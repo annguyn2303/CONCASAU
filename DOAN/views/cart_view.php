@@ -10,9 +10,10 @@ if (count($cart_items) <= 0) {
     <table class="table cart-table" id="cart">
         <thead>
             <th>STT</th>
-            <th>Sản phẩm</th>
+            <th style="text-align:left; padding-left: 50px;">Sản phẩm</th>
             <th>Số lượng</th>
             <th>Đơn giá (VND)</th>
+            <th>Action</th>
         </thead>
     <tbody>';
 
@@ -29,9 +30,9 @@ if (count($cart_items) <= 0) {
         $product_price_cal = $product_price * $product_quantity;
         $user_id = $_SESSION["user_id"];
         echo '
-        <tr>
+        <tr style="align-items: center;">
             <td>' . $count . '</td>
-            <td>
+            <td style="text-align:left; padding-left: 50px;">
                 <img src="' . $product_thumbnail . '" width="50">
                 <a href="details.php?productid=' . $item->getproduct_id() . '">' . $product_name . '</a>
             </td>
@@ -51,11 +52,12 @@ if (count($cart_items) <= 0) {
     echo '
             <tr>
                 <td></td>
-                <td></td>
+                <td style="text-align:left; padding-left: 50px; color: red; font-weight: 500;">Đơn giá</td>
                 <td>
                     <span id="total-product-quantity" style="font-weight: 500;">' . $quantity . '</span>
                 </td>
                 <td id="total-product-price" style="font-weight: 500; color: red;">' . number_format($price, 0, ",", ".") . '</td>
+                <td></td>
             </tr>
         </tbody>
     </table>

@@ -3,7 +3,7 @@
 
 <main class="content dynamic-container text-center">
 
-    <h3 style="margin-bottom: 2rem; margin-top: 2rem;">Giỏ hàng</h3>
+    <h3 style="margin-bottom: 7rem; margin-top: 2rem;">Giỏ hàng</h3>
 
     <?php
     require_once($_SERVER['DOCUMENT_ROOT'] . "/DOAN/controllers/cart_controller.php");
