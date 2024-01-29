@@ -1,4 +1,5 @@
 <?php
+require_once($_SERVER['DOCUMENT_ROOT'] . "/DOAN/modules/db_module.php");
 if (count($cart_items) <= 0) {
     echo "
     <div class='text-center m-t-30' style='margin-bottom: 3rem;'>
@@ -49,6 +50,14 @@ if (count($cart_items) <= 0) {
         $quantity += $item->getproduct_quantity();
         $price += $product_price_cal;
     }
+    $link = null;
+    taoKetNoi($link);
+    $currency = 0;
+    $current_currency = chayTruyVanTraVeDL($link, "SELECT `currency` FROM tbl_user WHERE `user_id` = '$user_id'");
+    while ($rows = mysqli_fetch_assoc($current_currency)) {
+        $currency = $rows['currency'];
+    }
+    $remain_currency = (int)$currency - (int)$price;
     echo '
             <tr>
                 <td></td>
@@ -66,6 +75,7 @@ if (count($cart_items) <= 0) {
     <form action="purchase.php" method="POST">
     <input type="hidden" name="productquantity" value="' . $quantity . '" />
     <input type="hidden" name="user_id_2" value="' . $user_id . '" />
+    <input type="hidden" name="remain_currency" value="' . $remain_currency . '" />
     <button type="submit" class="btn btn-primary" style="position: relative;" id="dathang">
         Đặt hàng
     </button>

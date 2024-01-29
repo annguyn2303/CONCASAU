@@ -1,4 +1,5 @@
-<?php require_once("header.php")
+<?php require_once("header.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/DOAN/modules/db_module.php");
 ?>
 
 <main class="content dynamic-container">
@@ -16,6 +17,19 @@
                                     <div class="form-group">
                                         <label for="phone">Số điện thoại: </label>
                                         <?= $_SESSION['user_phone'] ?>
+                                    </div>
+                                    <?php $link = null;
+                                    taoKetNoi($link);
+                                    $currency = 0;
+                                    $user_id = $_SESSION["user_id"];
+                                    $current_currency = chayTruyVanTraVeDL($link, "SELECT `currency` FROM tbl_user WHERE `user_id` = '$user_id'");
+                                    while ($rows = mysqli_fetch_assoc($current_currency)) {
+                                        $currency = $rows['currency'];
+                                    } ?>
+                                    <div class="form-group">
+                                        <label for="phone">Số dư: </label>
+                                        <?= number_format($currency, 0, ",", ".") ?>
+                                        VND
                                     </div>
 
                                     <div class="form-group">

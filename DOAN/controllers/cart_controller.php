@@ -22,9 +22,9 @@ class CartController
     {
         $this->model->addCartItem($product_id, $productquantity);
     }
-    public function purchase($user_id, $product_quantity)
+    public function purchase($user_id, $product_quantity, $remain_currency)
     {
-        $this->model->purchase($user_id, $product_quantity);
+        $this->model->purchase($user_id, $product_quantity, $remain_currency);
     }
     public function deleteCartItem($user_id, $product_id)
     {

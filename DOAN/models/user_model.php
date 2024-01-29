@@ -79,9 +79,12 @@ class UserModel
         $user_password = $_POST['user_password'];
         $user_name = $_POST['user_name'];
         $user_address = $_POST['user_address'];
+        $currency = $_POST['currency'];
+        print_r($currency);
+        exit();
         $link = null;
         taoKetNoi($link);
-        $query = "INSERT INTO tbl_user (`user_phone`, `user_password`, `user_name`, `user_address`) VALUES ( '$user_phone', '$user_password', '$user_name', '$user_address')";
+        $query = "INSERT INTO tbl_user (`user_phone`, `user_password`, `user_name`, `user_address`, `currency`) VALUES ( '$user_phone', '$user_password', '$user_name', '$user_address', '$currency')";
         $setuser = chayTruyVanKhongTraVeDL($link, $query);
         if ($setuser) {
             $result = true;
@@ -105,6 +108,7 @@ class UserModel
                 $_SESSION['user_phone'] = $row['user_phone'];
                 $_SESSION['user_name'] = $row['user_name'];
                 $_SESSION['user_address'] = $row['user_address'];
+                $_SESSION['currency'] = $row['currency'];
                 $getuser = true;
             }
         } else {

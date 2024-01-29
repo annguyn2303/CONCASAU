@@ -82,7 +82,7 @@ class CartModel
         exit();
     }
 
-    public function purchase($user_id)
+    public function purchase($user_id, $product_quantity, $remain_currency)
     {
         $link = null;
         taoKetNoi($link);
@@ -107,6 +107,9 @@ class CartModel
         foreach ($data as $item) {
             chayTruyVanKhongTraVeDL($link, "INSERT INTO `tbl_order_details` ( `order_id`, `product_id`, `product_quantity`) VALUES ( " . $order->getorder_id() . ",'" . $item->getproduct_id() . "', '" . $item->getproduct_quantity() . "')");
         }
+
+        $query_cur = "UPDATE tbl_user SET currency = $remain_currency WHERE user_id = '$user_id'";
+        chayTruyVanKhongTraVeDL($link, $query_cur);
         header("Location: order.php");
         exit();
     }

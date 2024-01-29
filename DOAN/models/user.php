@@ -7,14 +7,16 @@ class User
     private $user_password;
     private $user_name;
     private $user_address;
+    private $currency;
 
-    public function __construct($user_id, $user_phone, $user_password, $user_name, $user_address)
+    public function __construct($user_id, $user_phone, $user_password, $user_name, $user_address, $currency)
     {
         $this->user_id = $user_id;
         $this->user_phone = $user_phone;
         $this->user_password = $user_password;
         $this->user_name = $user_name;
         $this->user_address = $user_address;
+        $this->currency = $currency;
     }
 
     public function getUserId($user_id)
@@ -37,7 +39,10 @@ class User
     {
         return $this->user_address;
     }
-
+    public function getUserCurrency($currency)
+    {
+        return $this->currency;
+    }
     public function setUserId($user_id)
     {
         $this->user_id = $user_id;
@@ -57,5 +62,9 @@ class User
     public function setUserAddress($user_address)
     {
         $this->user_address = $user_address;
+    }
+    public function setUserCurrency($currency)
+    {
+        $this->currency = $currency;
     }
 }
