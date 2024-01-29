@@ -4,15 +4,15 @@
     {
         foreach($women_fg_List as $wfl)
         {
-            echo"
-                <div class='card col-6 col-lg-3 float-left border-0'>
-                <img src='".$wfl->getproduct_thumbnail()."' class='card-img-top img-product-thumbnail' alt='San pham'>
-                <div class='card-body'>
-                    <h5 class='card-title'>".$wfl->getproduct_name()."</h5>
-                    <p class='card-text'>Gia: ".number_format($wfl->getproduct_price(), 0, ',', '.')."</p>
-                    <a href='details.php?productid=".$wfl->getproduct_id()."' class='stretched-link'></a>
-                </div>
-                </div>
+            echo "
+                    <div class='card col-6 col-lg-3 float-left border-0'>
+                    <img src='".$wfl->getproduct_thumbnail()."' class='card-img-top img-product-thumbnail' alt='San pham'>
+                    <div class='card-body'>
+                        <h5 class='card-title'>".$wfl->getproduct_name()."</h5>
+                        <p class='card-text'>Giá: ".number_format($wfl->getproduct_price(), 0, ',', '.')."</p>
+                        <a href='details.php?productid=".$wfl->getproduct_id()."' class='stretched-link'></a>
+                    </div>
+                    </div>
                 "; 
             }
     }
@@ -20,14 +20,12 @@
         $arr_sort= array();
         $arr_id= array();
         $a=0;
-        // add price to array
         foreach($women_fg_List as $wfl)
         {
             $num=($wfl->getproduct_price());
             $arr_sort[$a]=(double)$num;
             $a++;
         }
-        //
         $arr_price= array();
         $index_arr_price=0;
         if(!$price==null)
@@ -81,7 +79,6 @@
         else{
             $arr_price=$arr_sort;
         }
-        // sort price
         if($minmax==1){
             rsort( $arr_price);
         }
@@ -91,7 +88,6 @@
                 sort($arr_price);
             }
         }
-        //id product
         $index_id=0;
         for($i=0;$i<count($arr_price);$i++){
             foreach($women_fg_List as $wfl)
@@ -102,30 +98,23 @@
                 }
             }
         }
-
-        //print product
             for($j=0;$j<count($arr_id);$j++){
-                
                     foreach($women_fg_List as $wfl)
                     {
                         if($wfl->getproduct_id()==$arr_id[$j])
                         { 
-                            echo"
-                                <div class='card col-6 col-lg-3 float-left border-0'>
-                                <img src='".$wfl->getproduct_thumbnail()."' class='card-img-top img-product-thumbnail' alt='San pham'>
-                                <div class='card-body'>
-                                    <h5 class='card-title'>".$wfl->getproduct_name()."</h5>
-                                    <p class='card-text'>Gia: ".number_format($wfl->getproduct_price(), 0, ',', '.')."</p>
-                                    <a href='details.php?productid=".$wfl->getproduct_id()."' class='stretched-link'></a>
-                                </div>
-                                </div>
-                            "; 
+                            echo "
+                                    <div class='card col-6 col-lg-3 float-left border-0'>
+                                    <img src='".$wfl->getproduct_thumbnail()."' class='card-img-top img-product-thumbnail' alt='San pham'>
+                                    <div class='card-body'>
+                                        <h5 class='card-title'>".$wfl->getproduct_name()."</h5>
+                                        <p class='card-text'>Giá: ".number_format($wfl->getproduct_price(), 0, ',', '.')."</p>
+                                        <a href='details.php?productid=".$wfl->getproduct_id()."' class='stretched-link'></a>
+                                    </div>
+                                    </div>
+                                "; 
                         }
                     }
-                
             }
         }
-            
-        
-    
 ?>

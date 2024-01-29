@@ -17,3 +17,7 @@ $(document).ready(function () {
     $quantity.val(Math.max(parseInt($quantity.val()) - 1, 0)).trigger("input");
   });
 });
+
+function queryToggle(){
+  $(".sort-filter").toggleClass("d-none");
+}

@@ -1,8 +1,9 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/CONCASAU/DOAN/models/cart_item.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/CONCASAU/DOAN/models/cart_model.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/DOAN/models/cart_item.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/DOAN/models/cart_model.php");
 
-class CartController{
+class CartController
+{
     private $model;
     public function __construct()
     {
@@ -23,11 +24,10 @@ class CartController{
     }
     public function purchase($user_id, $product_quantity)
     {
-        $this -> model -> purchase($user_id, $product_quantity);
+        $this->model->purchase($user_id, $product_quantity);
     }
     public function deleteCartItem($user_id, $product_id)
     {
-        $this -> model -> deleteCartItem($user_id, $product_id);
+        $this->model->deleteCartItem($user_id, $product_id);
     }
 }
-?>

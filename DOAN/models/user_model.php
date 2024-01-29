@@ -1,7 +1,7 @@
 <?php
 
-require_once($_SERVER['DOCUMENT_ROOT']."/CONCASAU/DOAN/models/user.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/CONCASAU/DOAN/modules/db_module.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/DOAN/models/user.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/DOAN/modules/db_module.php");
 
 class UserModel
 {
@@ -167,7 +167,7 @@ class UserModel
         return $checkuser;
     }
 
-    
+
 
 
     /*---------------------------------Update---------------------------------*/
