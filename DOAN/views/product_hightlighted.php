@@ -7,7 +7,6 @@
                     $id=$category->getproduct_category_id();
                 }
             }
-
             $first_product = false;
             foreach($productlist as $product){
                 if($product-> getcategory_id() == $id){
