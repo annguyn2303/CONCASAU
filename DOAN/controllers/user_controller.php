@@ -8,7 +8,10 @@ class UserController
     public function __construct()
     {
         $this->usermodel = new UserModel();
-        session_start();
+        if (session_status() == PHP_SESSION_NONE) {
+            // Nếu chưa được start, bắt đầu session
+            session_start();
+        }
     }
 
     public function userInvoke()

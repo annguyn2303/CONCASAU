@@ -80,8 +80,6 @@ class UserModel
         $user_name = $_POST['user_name'];
         $user_address = $_POST['user_address'];
         $currency = $_POST['currency'];
-        print_r($currency);
-        exit();
         $link = null;
         taoKetNoi($link);
         $query = "INSERT INTO tbl_user (`user_phone`, `user_password`, `user_name`, `user_address`, `currency`) VALUES ( '$user_phone', '$user_password', '$user_name', '$user_address', '$currency')";
@@ -207,16 +205,19 @@ class UserModel
         $userid = $_SESSION['user_id'];
         $newname = $_POST['user_name'];
         $newaddress = $_POST['user_address'];
+        $newcurrency = $_POST['currency'];
 
         $link = null;
         taoKetNoi($link);
 
-        $query = "UPDATE `tbl_user` SET user_name = '$newname', `user_address` = '$newaddress' WHERE user_id = $userid";
+        $query = "UPDATE `tbl_user` SET user_name = '$newname', `user_address` = '$newaddress', `currency` = '$newcurrency' WHERE user_id = $userid";
         $result = chayTruyVanKhongTraVeDL($link, $query);
 
         if ($result) {
             $_SESSION['user_name'] = $newname;
             $_SESSION['user_address'] = $newaddress;
+            $_SESSION['currency'] = $newcurrency;
+
             return true;
         } else {
             return false;

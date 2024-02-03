@@ -1,5 +1,13 @@
 <?php require_once("header.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/DOAN/modules/db_module.php");
+$link = null;
+taoKetNoi($link);
+$user_id = $_SESSION['user_id'];
+$result = chayTruyVanTraveDL($link, "SELECT * FROM tbl_user WHERE user_id=$user_id");
+$money = 0;
+while ($row = mysqli_fetch_assoc($result)) {
+    $money = $row["currency"];
+}
 ?>
 
 <main class="content dynamic-container">
@@ -18,19 +26,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/DOAN/modules/db_module.php");
                                         <label for="phone">Số điện thoại: </label>
                                         <?= $_SESSION['user_phone'] ?>
                                     </div>
-                                    <?php $link = null;
-                                    taoKetNoi($link);
-                                    $currency = 0;
-                                    $user_id = $_SESSION["user_id"];
-                                    $current_currency = chayTruyVanTraVeDL($link, "SELECT `currency` FROM tbl_user WHERE `user_id` = '$user_id'");
-                                    while ($rows = mysqli_fetch_assoc($current_currency)) {
-                                        $currency = $rows['currency'];
-                                    } ?>
-                                    <div class="form-group">
-                                        <label for="phone">Số dư: </label>
-                                        <?= number_format($currency, 0, ",", ".") ?>
-                                        VND
-                                    </div>
 
                                     <div class="form-group">
                                         <label for="user_name">Họ tên</label>
@@ -38,22 +33,28 @@ require_once($_SERVER['DOCUMENT_ROOT'] . "/DOAN/modules/db_module.php");
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="currency">Số dư (VND)</label>
+                                        <input id="currency" type="number_format" class="form-control" name="currency" value="<?= $money ?>" required autofocus>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="user_address">Địa chỉ</label>
                                         <input id="user_address" type="text" class="form-control" name="user_address" value="<?= $_SESSION['user_address'] ?>" required autofocus>
                                     </div>
-
                                     <div class="form-group m-0">
                                         <button type="submit" name="update" class="btn btn-primary btn-block">
                                             Cập nhật
                                         </button>
                                     </div>
+
                                     <div class="mt-4 text-center">
                                         <a href="user_invoke.php?action=logout" style="color: black;">Đăng xuất</a>
                                     </div>
+
                                     <div class="mt-4 text-center">
                                         <a href="order.php" style="color: black;">Lịch sử mua hàng</a>
-
                                     </div>
+
                                     <div style="height: 30px;"></div>
                                 </form>
                         </div>

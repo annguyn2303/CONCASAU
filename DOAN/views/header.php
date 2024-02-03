@@ -22,6 +22,12 @@
     <link rel="stylesheet" href="/DOAN/Style/style.css" />
     <title>DIOR</title>
 </head>
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    // Nếu chưa được start, bắt đầu session
+    session_start();
+}
+?>
 
 <body>
     <!-- navitigation bar -->
@@ -37,35 +43,25 @@
                 </button>
                 <!-- actual navitigation menu -->
                 <div class="collapse navbar-collapse justify-content-between" id="navbarResponsive">
-                    <ul class="navbar-nav">
-                        <li class="nav-item ml-3">
-                            <a class="nav-link" href="/DOAN/views/index.php">HOME</a>
-                        </li>
-                        <li class="nav-item lg-3">
+                    <ul class="navbar-nav" style="padding-left: 100px;">
+                        <li class="nav-item lg-4">
                             <a class="nav-link" href="/DOAN/views/makeup_category.php">MAKE-UP</a>
                         </li>
-                        <li class="nav-item lg-3">
+                        <li class="nav-item lg-4">
                             <a class="nav-link" href="/DOAN/views/men_fg_category.php">MEN'S FRAGRANCE</a>
                         </li>
-                        <li class="nav-item lg-3">
+                        <li class="nav-item lg-4">
                             <a class="nav-link" href="/DOAN/views/women_fg_category.php">WOMEN'S FRAGRANCE</a>
                         </li>
-                        <li class="nav-item lg-3">
-                            <a class="nav-link" href="/DOAN/views/cart_invoke.php">GIỎ HÀNG</a>
-                        </li>
-                        <li class="nav-item lg-3">
-                            <a class="nav-link" href="/DOAN/views/user_invoke.php">TÀI KHOẢN</a>
-                        </li>
-
                     </ul>
-                    <form class="form" action="search.php" method="$_GET">
+                    <form class="form" action="search.php" method="$_GET" style="width: 600px; margin-left: 260px;">
                         <div class="row">
-                            <div class="col-lg-7">
+                            <div class="col-lg-9 p-0">
                                 <div class="form" id="timkiem">
                                     <input type="text" id="search" name="keyword" class="form-control" placeholder="Tìm kiếm sản phẩm..." />
                                 </div>
                             </div>
-                            <div class="col-lg-5">
+                            <div class="col-lg-3 p-0">
                                 <button type="submit" class="btn my-button">
                                     <i class="bi-search"></i>
                                     <span class="top-button-text">Tìm kiếm</span>
@@ -73,6 +69,38 @@
                             </div>
                         </div>
                     </form>
+
+                    <div class="btn-group">
+                        <?php
+                        if (isset($_SESSION['user_name'])) {
+                        ?>
+                            <button class="btn btn-primary dropdown-toggle mb-2" type="button" id="defaultDropdown" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
+                                <i class="far fa-user fa-lg"></i>
+                                <span class="ml-2"><?= $_SESSION["user_name"] ?> </span></button>
+                            <ul class="dropdown-menu dropdown-menu-lg-end bg-light rounded-3" aria-labelledby="defaultDropdown">
+                                <li><a class="dropdown-item" href="/DOAN/views/user_invoke.php">Tài khoản</a></li>
+                                <li><a class="dropdown-item" href="/DOAN/views/cart_invoke.php">Giỏ hàng</a></li>
+                                <li><a class="dropdown-item" href="/DOAN/views/order.php">Lịch sử mua hàng</a></li>
+                                <li><a class="dropdown-item" href="/DOAN/views/user_invoke.php?action=logout">Đăng xuất</a></li>
+                            </ul>
+                        <?
+                        } else {
+                        ?>
+                            <button onclick="logIn()" class="btn btn-primary">
+                                Đăng nhập
+                            </button>
+                        <?
+                        }
+                        ?>
+
+                    </div>
                 </div>
             </nav>
         </header>
+        <script>
+            var base_url = window.location.origin;
+
+            function logIn() {
+                window.location = base_url + '/DOAN/views/user_invoke.php';
+            }
+        </script>

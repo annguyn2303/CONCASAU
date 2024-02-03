@@ -50,6 +50,7 @@ if (count($cart_items) <= 0) {
         $quantity += $item->getproduct_quantity();
         $price += $product_price_cal;
     }
+
     $link = null;
     taoKetNoi($link);
     $currency = 0;
